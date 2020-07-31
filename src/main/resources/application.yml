@@ -1,0 +1,45 @@
+server:
+  port: 8081
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    servlet.content-type: text/html
+    encoding: UTF-8
+    cache: false
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+      settings:
+        web-allow-others: true
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:demo
+    username: root
+    password: root
+    #程序运行时，使用schema.sql来创建数据库中的表
+    schema: classpath:sql/schema.sql
+    #程序运行时，使用data.sql来创建初始数据
+    data: classpath:sql/data.sql
+    driver-class-name: org.h2.Driver
+
+
